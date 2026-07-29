@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Information Survey</title>
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-color: #0f172a;
+      --border-color: #cbd5e1;
+      --disabled-bg: #f1f5f9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: var(--card-bg);
+      width: 100%;
+      max-width: 650px;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 8px;
+      color: var(--primary-color);
+    }
+
+    p.subtitle {
+      text-align: center;
+      color: #64748b;
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+
+    fieldset {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    legend {
+      font-weight: 600;
+      padding: 0 8px;
+      color: var(--primary-color);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input[type="text"]:focus,
+    select:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    select:disabled,
+    input:disabled {
+      background-color: var(--disabled-bg);
+      cursor: not-allowed;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button[type="submit"]:hover {
+      background-color: var(--primary-hover);
+    }
+
+    @media (max-width: 500px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Student Registration Survey</h2>
+    <p class="subtitle">Please complete the form below with accurate details.</p>
+
+    <form id="studentSurveyForm">
+      <!-- Student Info Section -->
+      <fieldset>
+        <legend>Personal & Academic Info</legend>
+        
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" placeholder="e.g., Juan Dela Cruz" required />
+          </div>
+
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender" required>
+              <option value="" disabled selected>Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-top: 16px;">
+          <div class="form-group">
+            <label for="course">Course / Degree Program</label>
+            <input type="text" id="course" placeholder="e.g., BS Information Technology" required />
+          </div>
+
+          <div class="form-group">
+            <label for="yearLevel">Year Level</label>
+            <select id="yearLevel" required>
+              <option value="" disabled selected>Select Year Level</option>
+              <option value="1st Year">1st Year</option>
+              <option value="2nd Year">2nd Year</option>
+              <option value="3rd Year">3rd Year</option>
+              <option value="4th Year">4th Year</option>
+              <option value="5th Year">5th Year+</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Address Section -->
+      <fieldset>
+        <legend>Address Details</legend>
+        
+        <div class="form-group">
+          <label for="region">Region</label>
+          <select id="region" required>
+            <option value="" disabled selected>Loading regions...</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="province">Province</label>
+          <select id="province" disabled required>
+            <option value="" disabled selected>Select Region first</option>
+          </select>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="city">City / Municipality</label>
+            <select id="city" disabled required>
+              <option value="" disabled selected>Select Province first</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="barangay">Barangay</label>
+            <select id="barangay" disabled required>
+              <option value="" disabled selected>Select City first</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 16px;">
+          <label for="street">House No. / Street / Building (Optional)</label>
+          <input type="text" id="street" placeholder="e.g., Block 5 Lot 12 Sunshine St." />
+        </div>
+      </fieldset>
+
+      <button type="submit">Submit Survey</button>
+    </form>
+  </div>
+
+  <script>
+    const API_BASE = 'https://psgc.cloud/api';
+
+    // DOM Elements
+    const regionSelect = document.getElementById('region');
+    const provinceSelect = document.getElementById('province');
+    const citySelect = document.getElementById('city');
+    const barangaySelect = document.getElementById('barangay');
+
+    // Fetch Regions on Page Load
+    document.addEventListener('DOMContentLoaded', fetchRegions);
+
+    async function fetchRegions() {
+      try {
+        const response = await fetch(`${API_BASE}/regions`);
+        const regions = await response.json();
+
+        // Sort alphabetically
+        regions.sort((a, b) => a.name.localeCompare(b.name));
+
+        populateDropdown(regionSelect, regions, 'Select Region');
+      } catch (error) {
+        console.error('Error fetching regions:', error);
+        regionSelect.innerHTML = '<option value="" disabled selected>Failed to load regions</option>';
+      }
+    }
+
+    // Region Changed -> Fetch Provinces (or handle NCR)
+    regionSelect.addEventListener('change', async function() {
+      const regionCode = this.value;
+
+      resetDropdown(provinceSelect, 'Loading provinces...');
+      resetDropdown(citySelect, 'Select Province first');
+      resetDropdown(barangaySelect, 'Select City first');
+
+      try {
+        const response = await fetch(`${API_BASE}/regions/${regionCode}/provinces`);
+        const provinces = await response.json();
+
+        // Handle Metro Manila (NCR) which does not have provinces
+        if (provinces.length === 0) {
+          provinceSelect.innerHTML = '<option value="NCR" selected>NCR (Not Applicable)</option>';
+          provinceSelect.disabled = true;
+          // Direct fetch cities for NCR
+          fetchCities(regionCode, true);
+        } else {
+          provinces.sort((a, b) => a.name.localeCompare(b.name));
+          populateDropdown(provinceSelect, provinces, 'Select Province');
+        }
+      } catch (error) {
+        console.error('Error fetching provinces:', error);
+      }
+    });
+
+    // Province Changed -> Fetch Cities / Municipalities
+    provinceSelect.addEventListener('change', function() {
+      const provinceCode = this.value;
+      resetDropdown(citySelect, 'Loading cities/municipalities...');
+      resetDropdown(barangaySelect, 'Select City first');
+
+      fetchCities(provinceCode, false);
+    });
+
+    async function fetchCities(parentCode, isRegion) {
+      try {
+        const endpoint = isRegion 
+          ? `${API_BASE}/regions/${parentCode}/cities-municipalities`
+          : `${API_BASE}/provinces/${parentCode}/cities-municipalities`;
+
+        const response = await fetch(endpoint);
+        const cities = await response.json();
+
+        cities.sort((a, b) => a.name.localeCompare(b.name));
+        populateDropdown(citySelect, cities, 'Select City / Municipality');
+      } catch (error) {
+        console.error('Error fetching cities:', error);
+      }
+    }
+
+    // City Changed -> Fetch Barangays
+    citySelect.addEventListener('change', async function() {
+      const cityCode = this.value;
+      resetDropdown(barangaySelect, 'Loading barangays...');
+
+      try {
+        const response = await fetch(`${API_BASE}/cities-municipalities/${cityCode}/barangays`);
+        const barangays = await response.json();
+
+        barangays.sort((a, b) => a.name.localeCompare(b.name));
+        populateDropdown(barangaySelect, barangays, 'Select Barangay');
+      } catch (error) {
+        console.error('Error fetching barangays:', error);
+      }
+    });
+
+    // Helper: Populate Dropdowns
+    function populateDropdown(element, data, defaultText) {
+      element.innerHTML = `<option value="" disabled selected>${defaultText}</option>`;
+      data.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.code;
+        option.textContent = item.name;
+        element.appendChild(option);
+      });
+      element.disabled = false;
+    }
+
+    // Helper: Reset Dropdowns
+    function resetDropdown(element, defaultText) {
+      element.innerHTML = `<option value="" disabled selected>${defaultText}</option>`;
+      element.disabled = true;
+    }
+
+    // Handle Form Submission
+    document.getElementById('studentSurveyForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const formData = {
+        fullName: document.getElementById('fullName').value,
+        gender: document.getElementById('gender').value,
+        course: document.getElementById('course').value,
+        yearLevel: document.getElementById('yearLevel').value,
+        address: {
+          region: regionSelect.options[regionSelect.selectedIndex].text,
+          province: provinceSelect.options[provinceSelect.selectedIndex].text,
+          city: citySelect.options[citySelect.selectedIndex].text,
+          barangay: barangaySelect.options[barangaySelect.selectedIndex].text,
+          street: document.getElementById('street').value
+        }
+      };
+
+      console.log('Survey Submitted:', formData);
+      alert('Survey submitted successfully! Check console for collected data.');
+    });
+  </script>
+</body>
+</html>
