@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Student Information Survey</title>
+  <!-- SweetAlert2 CSS & JS -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     :root {
       --primary-color: #2563eb;
@@ -359,7 +361,41 @@
       };
 
       console.log('Survey Submitted:', formData);
-      alert('Survey submitted successfully! Check console for collected data.');
+
+      // Construct Address String
+      const fullAddress = [
+        formData.address.street,
+        `Brgy. ${formData.address.barangay}`,
+        formData.address.city,
+        formData.address.province !== 'NCR (Not Applicable)' ? formData.address.province : null,
+        formData.address.region
+      ].filter(Boolean).join(', ');
+
+      // Display SweetAlert2 Success Modal
+      Swal.fire({
+        title: 'Survey Submitted!',
+        icon: 'success',
+        html: `
+          <div style="text-align: left; font-size: 0.95rem; line-height: 1.6;">
+            <p><strong>Name:</strong> ${formData.fullName}</p>
+            <p><strong>Gender:</strong> ${formData.gender}</p>
+            <p><strong>Course & Year:</strong> ${formData.course} (${formData.yearLevel})</p>
+            <p><strong>Address:</strong> ${fullAddress}</p>
+          </div>
+        `,
+        confirmButtonText: 'Great!',
+        confirmButtonColor: '#2563eb'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Reset form after closing modal
+          document.getElementById('studentSurveyForm').reset();
+          
+          // Reset cascading dropdown states
+          resetDropdown(provinceSelect, 'Select Region first');
+          resetDropdown(citySelect, 'Select Province first');
+          resetDropdown(barangaySelect, 'Select City first');
+        }
+      });
     });
   </script>
 </body>
