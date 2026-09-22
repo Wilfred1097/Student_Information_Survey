@@ -4,7 +4,7 @@ A modern, responsive web application designed for seamless student registration 
 
 ![https://github.com/Wilfred1097/survey/blob/main/sample-ui.PNG](https://github.com/Wilfred1097/survey/blob/main/sample-ui.PNG?raw=true)
 
-🌐 **Live Demo:** [https://wilfred1097.github.io/Student_Information_Survey/](https://wilfred1097.github.io/Student_Information_Survey/)
+🌐 **Live Demo:** [Student Information Survey Webpage](https://wilfred1097.github.io/Student_Information_Survey/)
 
 
 ---
